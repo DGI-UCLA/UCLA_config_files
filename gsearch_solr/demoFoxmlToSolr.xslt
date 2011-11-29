@@ -162,6 +162,19 @@
 			</xsl:if>
 			
 		</xsl:for-each>
+		
+		<!--  Subject -->
+    <xsl:for-each select="foxml:datastream[@ID='MODS']/foxml:datastreamVersion[last()]/foxml:xmlContent//mods:name//mods:role[mods:roleTerm = 'subject']/../../mods:name/mods:namePart">
+      <xsl:if test="text() [normalize-space(.) ]"><!--don't bother with empty space-->
+        <field>
+          <xsl:attribute name="name">
+            <xsl:value-of select="concat('mods_', 'subjectName_s')"/>         
+          </xsl:attribute>
+          <xsl:value-of select="text()"/>
+        </field>
+      </xsl:if>
+      </xsl:for-each>
+      
 		<!--Creator-->
 		<xsl:for-each select="foxml:datastream[@ID='MODS']/foxml:datastreamVersion[last()]/foxml:xmlContent//mods:name//mods:role[mods:roleTerm = 'creator']/../../mods:name/mods:namePart">
 			<xsl:if test="text() [normalize-space(.) ]"><!--don't bother with empty space-->
@@ -307,7 +320,7 @@
 			<xsl:if test="text() [normalize-space(.) ]"><!--don't bother with empty space-->
 				<field>
 					<xsl:attribute name="name">
-						<xsl:value-of select="concat('mods_', 'publisher_dt')"/>
+						<xsl:value-of select="concat('mods_', 'publisher_s')"/>
 					</xsl:attribute>
 					<xsl:value-of select="text()"/>
 				</field>
@@ -483,6 +496,7 @@
 			</xsl:if>
 			
 		</xsl:for-each>
+		
 <!--subjects-->
 <xsl:for-each select="foxml:datastream[@ID='MODS']/foxml:datastreamVersion[last()]/foxml:xmlContent//mods:subject/mods:topic">
 	<xsl:if test="text() [normalize-space(.) ]"><!--don't bother with empty space-->
@@ -494,6 +508,7 @@
 			</field>
 		</xsl:if>
 	</xsl:for-each>
+	
 	<xsl:for-each select="foxml:datastream[@ID='MODS']/foxml:datastreamVersion[last()]/foxml:xmlContent//mods:subject/mods:name[@type='corporate']/mods:namePart">
 		<xsl:if test="text() [normalize-space(.) ]"><!--don't bother with empty space-->
 		<field>
@@ -504,6 +519,8 @@
 		</field>
 			</xsl:if>
 	</xsl:for-each>
+	
+	
 <xsl:for-each select="foxml:datastream[@ID='MODS']/foxml:datastreamVersion[last()]/foxml:xmlContent//mods:subject/mods:name[@type='personal']/mods:namePart">
 		<xsl:if test="text() [normalize-space(.) ]"><!--don't bother with empty space-->
 		<field>
