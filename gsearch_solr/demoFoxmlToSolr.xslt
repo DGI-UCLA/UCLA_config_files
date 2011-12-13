@@ -460,7 +460,7 @@
 			
 		</xsl:for-each>
 		
-		<xsl:for-each select="foxml:datastream[@ID='MODS']/foxml:datastreamVersion[last()]/foxml:xmlContent//mods:subject/mods:genre">
+		<xsl:for-each select="foxml:datastream[@ID='MODS']/foxml:datastreamVersion[last()]/foxml:xmlContent//mods:genre">
 			<xsl:if test="text() [normalize-space(.) ]"><!--don't bother with empty space-->
 				<field>
 					<xsl:attribute name="name">
