@@ -188,13 +188,15 @@
         </img>
       </a>
       <br clear="all"></br>
-      <a>
-        <xsl:attribute name="href">
-          <xsl:value-of select="$linkUrl"></xsl:value-of>
-        </xsl:attribute>
-        <xsl:value-of disable-output-escaping="yes" select="$newTitle"></xsl:value-of>
-      </a>
-      
+      <span>
+        <xsl:attribute name="class">islandora-object-link-wrap</xsl:attribute>
+	      <a>
+	        <xsl:attribute name="href">
+	          <xsl:value-of select="$linkUrl"></xsl:value-of>
+	        </xsl:attribute>
+	        <xsl:value-of disable-output-escaping="yes" select="$newTitle"></xsl:value-of>
+	      </a>
+      </span>
     </td>
     <xsl:if test="(position() = last()) and (position() &lt; $cellsPerRow)">
       <xsl:call-template name="FillerCells">
